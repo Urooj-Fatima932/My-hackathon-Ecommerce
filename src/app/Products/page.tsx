@@ -37,23 +37,25 @@ function Products() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true); // Set loading to true before fetching data
         const result = await fetchAllProducts();
+        
         if (result?.data) {
-          setProducts(result.data);
+          setProducts(result.data); // Set products if data exists
         } else {
-          setError(result?.error || "Unknown error");
+          setError(result?.error || "Unknown error"); // Set error message if no data
         }
       } catch (err) {
-        setError("Failed to fetch data");
-        console.log(err)
-        console.log(error)
+        setError("Failed to fetch data"); // Handle fetch error
+        console.log("Error during fetch:", err); // Log the actual error
       } finally {
-        setLoading(false);
+        setLoading(false); // Ensure loading is set to false after fetching
       }
     };
-
+  
     fetchData();
-  }, []);
+  }, [setProducts, setError, setLoading]); // Include functions in the dependency array if needed
+  
 
   // Filter and sort products
   const filteredProducts = products

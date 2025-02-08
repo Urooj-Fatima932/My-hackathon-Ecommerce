@@ -22,34 +22,27 @@ function Carousel2() {
     }
   
     const [wshoes, setWshoes] = useState<Product[]>([])
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState<string | null>(null)
   
     useEffect(() => {
       const fetchData = async () => {
-      try {
-        const result = await fetchMenShoes();
-        if (result && !result.error) {
-          if (result && result.data) {
+        try {
+          const result = await fetchMenShoes();
+          
+          if (result?.data) {
             setWshoes(result.data);
-            console.log(result.data)
+            console.log(result.data);
           } else {
-            setError(result?.error || 'Unknown error');
+            console.log('No data available');
           }
-        } else {
-          setError(result?.error || 'Unknown error');
+        } catch (err) {
+          console.error('Fetch error:', err);
         }
-      } catch (err) {
-        setError('Failed to fetch data');
-        console.log(loading,error,err)
-      } finally {
-        setLoading(false);
-      }
-      }
-      
+      };
+  
       fetchData();
-      
-    },[])
+    }, []);
+    
+   
    
     const sliderRef = useRef<Slider | null>(null); // Reference for the slider
   

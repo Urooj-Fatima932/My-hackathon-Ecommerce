@@ -1,59 +1,46 @@
 'use client';
 
 import Image from 'next/image';
-import React, { useRef } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react'; // Replace with your icon library
+import React, { useRef, useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react'; // Icon library
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { fetchCorousel } from '@/lib/fetchCorousel';
-import { useState,useEffect } from 'react';
 import Link from 'next/link';
-interface props{
-  name:string
-}
- function Carousel(name:props) {
-   interface Product {
-      productName: string;
-      image: string;
-      inventory: string;
-      price: number;
-      category: string;
-      status: string;
-      _id: string;
-    }
-  
-    const [wshoes, setWshoes] = useState<Product[]>([])
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState<string | null>(null)
-  
-    useEffect(() => {
-      const fetchData = async () => {
+
+function Carousel() {
+  interface Product {
+    productName: string;
+    image: string;
+    inventory: string;
+    price: number;
+    category: string;
+    status: string;
+    _id: string;
+  }
+
+  const [wshoes, setWshoes] = useState<Product[]>([]);
+  useEffect(() => {
+    const fetchData = async () => {
       try {
         const result = await fetchCorousel();
-        if (result && !result.error) {
-          if (result && result.data) {
-            setWshoes(result.data);
-            console.log(result.data)
-          } else {
-            setError(result?.error || 'Unknown error');
-          }
+        
+        if (result?.data) {
+          setWshoes(result.data);
+          console.log(result.data);
         } else {
-          setError(result?.error || 'Unknown error');
+          console.log('No data available');
         }
       } catch (err) {
-        setError('Failed to fetch data');
-        console.log(error,err)
-      } finally {
-        setLoading(false);
-        console.log(loading)
+        console.error('Fetch error:', err);
       }
-      }
-      
-      fetchData();
-    },[])
-   
-  const sliderRef = useRef<Slider | null>(null); // Reference for the slider
+    };
+
+    fetchData();
+  }, []);
+
+  const sliderRef = useRef<Slider | null>(null); // Slider reference
   const settings = {
     dots: false,
     infinite: true,
@@ -62,19 +49,19 @@ interface props{
     slidesToScroll: 1, // Scroll one slide at a time
     responsive: [
       {
-        breakpoint: 1024, // For large screens (1024px and above)
+        breakpoint: 1024, // Large screens
         settings: {
           slidesToShow: 3,
         },
       },
       {
-        breakpoint: 768, // For medium screens (768px and above)
+        breakpoint: 768, // Medium screens
         settings: {
           slidesToShow: 2,
         },
       },
       {
-        breakpoint: 480, // For small screens (480px and below)
+        breakpoint: 480, // Small screens
         settings: {
           slidesToShow: 1,
         },
@@ -83,11 +70,11 @@ interface props{
   };
 
   const handlePrevious = () => {
-    sliderRef.current?.slickPrev(); // Navigate to the previous slide
+    sliderRef.current?.slickPrev(); // Previous slide
   };
 
   const handleNext = () => {
-    sliderRef.current?.slickNext(); // Navigate to the next slide
+    sliderRef.current?.slickNext(); // Next slide
   };
 
   return (
@@ -95,7 +82,7 @@ interface props{
       <div className="w-[93%] mx-auto m-0 p-0">
         <div className="slider-container">
           <div className="flex justify-between items-center">
-            <h3 className="font-semibold text-lg">{name.name}</h3>
+            <h3 className="font-semibold text-lg">Shop</h3>
             <ul className="flex gap-4 items-center">
               <p className="font-bold">Shop</p>
               {/* Previous Icon */}
@@ -114,41 +101,39 @@ interface props{
               </div>
             </ul>
           </div>
+
+          {/* Render Slider */}
           <Slider ref={sliderRef} {...settings}>
             {wshoes.map((product) => (
               <Link href={`Product_Details/${product._id}`} key={product._id}>
-              <div
-                
-                className="p-4 flex flex-col border-none outline-none group relative"
-              >
-                {/* Image Section */}
-                <div className="relative overflow-hidden">
-                  <Image
-                    src={product.image}
-                    alt={product.productName}
-                    width={441}
-                    height={441}
-                    className="object-cover w-full h-auto transition-all group-hover:brightness-75"
-                  />
-
-                  {/* "Shop" Text */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span
-                      className="text-white font-semibold text-lg translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out"
-                    >
-                      Shop
-                    </span>
+                <div className="p-4 flex flex-col border-none outline-none group relative">
+                  {/* Image Section */}
+                  <div className="relative overflow-hidden">
+                    <Image
+                      src={product.image}
+                      alt={product.productName}
+                      width={441}
+                      height={441}
+                      className="object-cover w-full h-auto transition-all group-hover:brightness-75"
+                    />
+                    {/* "Shop" Text */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span
+                        className="text-white font-semibold text-lg translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out"
+                      >
+                        Shop
+                      </span>
+                    </div>
                   </div>
-                </div>
 
-                {/* Product Details */}
-                <div><p className='font-[500] text-orange-600 pt-2 px-1'>{product.status}</p></div>
-                <div className="text-lg font-semibold text-Cblack flex justify-between pt-1 px-2">
-                  <p>{product.productName}</p>
-                  <p>Rs.{product.price}</p>
+                  {/* Product Details */}
+                  <div><p className='font-[500] text-orange-600 pt-2 px-1'>{product.status}</p></div>
+                  <div className="text-lg font-semibold text-Cblack flex justify-between pt-1 px-2">
+                    <p>{product.productName}</p>
+                    <p>Rs.{product.price}</p>
+                  </div>
+                  <p className="text-sm text-tgray mx-2">{product.category}</p>
                 </div>
-                <p className="text-sm text-tgray mx-2">{product.category}</p>
-              </div>
               </Link>
             ))}
           </Slider>

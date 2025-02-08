@@ -1,4 +1,4 @@
-export default {
+ const shoes ={
     name: 'shoe',
     type: 'document',
     title: 'Shoe',
@@ -58,4 +58,4 @@ export default {
       },
     ],
   };
-  
+  export default shoes
