@@ -8,8 +8,10 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { fetchCorousel } from '@/lib/fetchCorousel';
 import Link from 'next/link';
-
-function Carousel() {
+interface CarouselProps {
+  name:string
+}
+function Carousel({ name }: CarouselProps) {
   interface Product {
     productName: string;
     image: string;
@@ -82,7 +84,7 @@ function Carousel() {
       <div className="w-[93%] mx-auto m-0 p-0">
         <div className="slider-container">
           <div className="flex justify-between items-center">
-            <h3 className="font-semibold text-lg">Shop</h3>
+            <h3 className="font-semibold text-lg">{name}</h3>
             <ul className="flex gap-4 items-center">
               <p className="font-bold">Shop</p>
               {/* Previous Icon */}

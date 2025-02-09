@@ -15,9 +15,11 @@ const formSchema = z.object({
   Search: z.string().regex(/^[a-zA-Z0-9 ]*$/, { message: "No special characters allowed." }),
 });
 
+interface SearchbarProps {
+  onSearch: (term: string) => void;
+}
 
-
-function Searchbar() {
+function Searchbar({ onSearch }: SearchbarProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -25,12 +27,15 @@ function Searchbar() {
     },
   });
 
- 
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    onSearch(values.Search);
+  }
 
+  
   return (
     <Form {...form}>
       <form
-       
+        onSubmit={form.handleSubmit(onSubmit)}
         className="w-full max-w-md"
       >
         <FormField

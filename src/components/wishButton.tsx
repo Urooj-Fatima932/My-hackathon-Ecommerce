@@ -1,6 +1,16 @@
 // components/ProductCard.tsx
 "use client";
-import { Product } from '@/context/WishContext';
+// In WishContext.tsx or wherever your Product type is defined
+interface Product {
+  _id: string;
+  productName: string;
+  price: number;
+  image: string;
+  inventory: number;
+  category: string;
+  
+}
+
 import { useWishlist } from '@/context/WishContext';
 
 export default function ProductCard({ product }: { product: Product }) {

@@ -125,7 +125,7 @@ function Products() {
         <div className="w-full flex flex-wrap lg:flex-nowrap gap-4 mb-8">
   {/* Searchbar - 40% width on large screens */}
   <div className="w-full lg:w-[40%]">
-    <Searchbar onSearch={handleSearch} />
+    <Searchbar  onSearch={handleSearch}/>
   </div>
 
   {/* Category Select - 20% width on large screens */}
