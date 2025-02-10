@@ -46,7 +46,7 @@ function MyNav() {
               <Link href="" className="hover:text-gray-500"><SignUpButton /></Link>
             </li>
             <li>
-              <Link href="/Login" className="hover:text-gray-500"><SignInButton /></Link>
+              <Link href="" className="hover:text-gray-500"><SignInButton /></Link>
             </li>
           </ul>
 

@@ -25,24 +25,11 @@ const Success = () => {
           <div className="space-y-4">
             <h1 className="text-4xl font-bold text-gray-900">Order Confirmed!</h1>
             <p className="text-gray-600 text-lg">
-              Your Nike order has been successfully placed. A confirmation email is on its way.
+              Your Nike order has been successfully placed.
             </p>
     
             {/* Order Details Card */}
-            <div className="bg-white p-6 rounded-xl shadow-lg text-left space-y-3">
-              <div className="flex justify-between">
-                <span className="text-gray-600">Order ID:</span>
-                <span className="font-medium">#NIKE235689</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-600">Items:</span>
-                <span className="font-medium">Air Jordan 1 Retro High OG</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-600">Total:</span>
-                <span className="font-medium text-emerald-600">$179.99</span>
-              </div>
-            </div>
+           
     
             {/* Actions */}
             <button className="w-full bg-black hover:bg-gray-800 text-white py-4 px-6 rounded-xl font-medium transition-all duration-200 transform hover:-translate-y-1">
