@@ -69,7 +69,7 @@ export default async function ProductDetails({ params }: ProductDetailsProps) {
             </div>
 
             {/* Buttons */}
-            <div className="flex justify-center gap-4 w-full">
+            <div className="flex justify-center gap-4 w-full mb-[50px]">
               <div className="w-[70%]"><AddToCartButton product={product} /></div>
               <div className="w-[10%]"><WishButton product={product} /></div>
             </div>
