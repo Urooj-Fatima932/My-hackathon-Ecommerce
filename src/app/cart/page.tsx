@@ -21,7 +21,7 @@ function Cart() {
     }));
   };
   const handleCheckout = async () => {
-    await fetch("http://localhost:3000/api/chackout", {
+    await fetch("https://my-hackathon-ecommerce.vercel.app/api/chackout", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
