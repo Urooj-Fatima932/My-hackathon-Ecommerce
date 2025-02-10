@@ -1,5 +1,4 @@
 'use client';
-import Link from 'next/link';
 import CartItem from '@/components/CartItem';
 import Carousel from '@/components/carousel';
 import { useCart } from '@/context/cartContext'; // Adjust the import path
@@ -20,6 +19,25 @@ function Cart() {
       ...prev,
       [itemId]: isSelected,
     }));
+  };
+  const handleCheckout = async () => {
+    await fetch("http://localhost:3000/api/chackout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ products: cartItems }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.url) {
+          window.location.href = response.url;
+          // console.log(response.url);
+        }
+      });
   };
 
  
@@ -80,16 +98,16 @@ function Cart() {
             <p>Rs. {total.toLocaleString()}</p> {/* Display dynamic total */}
           </div>
         
-        <Link href="/CheckOut">
+        
           <button 
             className="text-sm bg-[#111111] cursor-pointer w-full text-white py-3 rounded-[30px] mb-6 hover:bg-gray-800"
             disabled={subtotal === 0} // Disable checkout if nothing is selected
-          
+            onClick={handleCheckout}
           >
           Checkout
           </button>
           
-          </Link>
+        
           
         </div>
       </div>

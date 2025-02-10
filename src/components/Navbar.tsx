@@ -20,7 +20,7 @@ function MyNav() {
 
       {/* Main Navbar */}
       <div className="w-full md:w-[93%] mx-auto relative  text-sm ">
-        <div className="flex justify-evenly  md:justify-between items-center h-[60px]">
+        <div className="flex justify-between items-center h-[60px]">
           {/* Logo */}
           <div className="max-w-[38px]">
             <Image src="/images/logo2.png" alt="nike logo" width={58} height={20} />
@@ -102,12 +102,12 @@ function MyNav() {
               </li>
               <li>
                 <Link href="/Signin" className="hover:text-gray-500" onClick={toggleMenu}>
-                  Sign Up
+                  <SignUpButton/>
                 </Link>
               </li>
               <li>
                 <Link href="/Login" className="hover:text-gray-500" onClick={toggleMenu}>
-                  Login
+                  <SignUpButton/>
                 </Link>
               </li>
               <li>

@@ -1,29 +1,62 @@
 import React from "react";
-import Wrapper from "@/components/Wrapper";
-import Link from "next/link";
 
 const Success = () => {
     return (
-        <div className="min-h-[500px] flex items-center">
-            <Wrapper>
-                <div className="max-w-[600px] rounded-lg p-5 border border-black mx-auto flex flex-col">
-                    <div className="text-2xl font-bold">
-                        Thanks for shopping with us!
-                    </div>
-                    <div className="text-lg font-bold mt-2">
-                        Your order has been placed successfully.
-                    </div>
-                    <div className="text-base mt-5">
-                        For any product related query, drop an email to
-                    </div>
-                    <div className="underline">shoeshopcontact@shop.com</div>
-
-                    <Link href="/" className="font-bold mt-5">
-                        Continue Shopping
-                    </Link>
-                </div>
-            </Wrapper>
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+        <div className="max-w-md w-full space-y-8 text-center">
+          {/* Checkmark Animation */}
+          <div className="mx-auto flex items-center justify-center h-32 w-32 bg-emerald-100 rounded-full">
+            <svg
+              className="checkmark animate-scaleIn w-16 h-16 text-emerald-600"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                d="M20 6L9 17l-5-5"
+                className="animate-draw"
+              />
+            </svg>
+          </div>
+    
+          {/* Content */}
+          <div className="space-y-4">
+            <h1 className="text-4xl font-bold text-gray-900">Order Confirmed!</h1>
+            <p className="text-gray-600 text-lg">
+              Your Nike order has been successfully placed. A confirmation email is on its way.
+            </p>
+    
+            {/* Order Details Card */}
+            <div className="bg-white p-6 rounded-xl shadow-lg text-left space-y-3">
+              <div className="flex justify-between">
+                <span className="text-gray-600">Order ID:</span>
+                <span className="font-medium">#NIKE235689</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-600">Items:</span>
+                <span className="font-medium">Air Jordan 1 Retro High OG</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-600">Total:</span>
+                <span className="font-medium text-emerald-600">$179.99</span>
+              </div>
+            </div>
+    
+            {/* Actions */}
+            <button className="w-full bg-black hover:bg-gray-800 text-white py-4 px-6 rounded-xl font-medium transition-all duration-200 transform hover:-translate-y-1">
+              Continue Shopping
+            </button>
+            <p className="text-gray-600">
+              Need help?{' '}
+              <a href="#" className="text-black font-medium hover:underline">
+                Contact Support
+              </a>
+            </p>
+          </div>
         </div>
+      </div>
     );
 };
 

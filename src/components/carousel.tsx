@@ -33,9 +33,12 @@ function Carousel({ name }: CarouselProps) {
           console.log(result.data);
         } else {
           console.log('No data available');
+          return
+          <div className='text-sm text-red-600'>Network Error Failed to fetch data</div>
         }
       } catch (err) {
         console.error('Fetch error:', err);
+        return<div className='text-sm text-red-600'>Network Error Failed to fetch data</div>
       }
     };
 
