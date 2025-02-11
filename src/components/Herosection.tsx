@@ -4,7 +4,7 @@ import Button from "@/components/Button";
 import Carousel2 from "./corousel2";
 import Carousel from "./carousel";
 import Carousel3 from "./carousel3";
-
+import Link from "next/link";
 
 function Hero() {
   return (
@@ -14,9 +14,9 @@ function Hero() {
           <p className="text-center font-semibold pt-3">Hello Nike App</p>
           <p className="text-sm text-center pb-3">
             Download To Access Everything Nike.{" "}
-            <a href="#" className="underline">
+            <Link href="#" className="underline">
               Get You Great
-            </a>
+            </Link>
           </p>
           <Image
             src="/images/Banner.jpg"
@@ -39,8 +39,9 @@ function Hero() {
           </p>
         </div>
         <div className="text-center ">
+
           <Button text="Notify Me" className="m-3"/>
-          <Button text="Shop Air Max" className="m-3" />
+          <Link href="/Products"> <Button text="Shop Air Max" className="m-3" /></Link>
         </div>
       </div>
       <Carousel name="Best Of Air Max"/>
@@ -56,7 +57,7 @@ function Hero() {
             Cause everyone should know the feeling of running in that perfect
             pair.
           </p>
-          <Button text="Find Your Shoe" />
+          <Link href="/Products"><Button text="Find Your Shoe" /></Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Carousel2 />

@@ -50,6 +50,26 @@ function Carousel3() {
     speed: 500,
     slidesToShow: 2,
     slidesToScroll: 1, // Scroll one slide at a time
+    responsive: [
+      {
+        breakpoint: 1024, // Large screens
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 768, // Medium screens
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 480, // Small screens
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   const handlePrevious = () => {
