@@ -19,7 +19,7 @@ function MyNav() {
       <TopHeader />
 
       {/* Main Navbar */}
-      <div className="w-full md:w-[93%] mx-auto relative  text-sm ">
+      <div className="w-[95%] md:w-[93%] mx-auto relative  text-sm ">
         <div className="flex justify-between items-center h-[60px]">
           {/* Logo */}
           <div className="max-w-[38px]">
